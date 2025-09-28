@@ -1,7 +1,7 @@
 package br.com.guiarese.persons.infrastructure.integration.cep;
 
 import br.com.guiarese.persons.domain.CepInfo;
-import br.com.guiarese.persons.gateways.CepInfoGateway;
+import br.com.guiarese.persons.gateway.CepInfoGateway;
 import br.com.guiarese.persons.infrastructure.integration.cep.dto.CepResponse;
 import br.com.guiarese.persons.infrastructure.integration.cep.mapper.CepInfoMapper;
 import lombok.RequiredArgsConstructor;

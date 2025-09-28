@@ -1,4 +1,4 @@
-package br.com.guiarese.persons.infrastructure.controllers.dtos;
+package br.com.guiarese.persons.infrastructure.controller.dto;
 
 import lombok.Builder;
 

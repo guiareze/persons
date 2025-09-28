@@ -1,13 +1,13 @@
 package br.com.guiarese.persons.main;
 
 import br.com.guiarese.persons.application.CreatePersonUseCase;
-import br.com.guiarese.persons.gateways.CepInfoGateway;
-import br.com.guiarese.persons.gateways.PersonRepositoryGateway;
-import br.com.guiarese.persons.infrastructure.controllers.mappers.PersonDtoMapper;
+import br.com.guiarese.persons.gateway.CepInfoGateway;
+import br.com.guiarese.persons.gateway.PersonRepositoryGateway;
+import br.com.guiarese.persons.infrastructure.controller.mapper.PersonDtoMapper;
 import br.com.guiarese.persons.infrastructure.integration.cep.CepInfoGatewayImpl;
 import br.com.guiarese.persons.infrastructure.integration.cep.mapper.CepInfoMapper;
 import br.com.guiarese.persons.infrastructure.persistence.PersonRepositoryGatewayImpl;
-import br.com.guiarese.persons.infrastructure.persistence.mappers.PersonEntityMapper;
+import br.com.guiarese.persons.infrastructure.persistence.mapper.PersonEntityMapper;
 import br.com.guiarese.persons.infrastructure.persistence.repository.PersonRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

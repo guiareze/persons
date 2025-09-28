@@ -1,9 +1,9 @@
-package br.com.guiarese.persons.infrastructure.controllers;
+package br.com.guiarese.persons.infrastructure.controller;
 
 import br.com.guiarese.persons.application.CreatePersonUseCase;
-import br.com.guiarese.persons.infrastructure.controllers.dtos.CreatePersonRequest;
-import br.com.guiarese.persons.infrastructure.controllers.dtos.PersonResponse;
-import br.com.guiarese.persons.infrastructure.controllers.mappers.PersonDtoMapper;
+import br.com.guiarese.persons.infrastructure.controller.dto.CreatePersonRequest;
+import br.com.guiarese.persons.infrastructure.controller.dto.PersonResponse;
+import br.com.guiarese.persons.infrastructure.controller.mapper.PersonDtoMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
-@RequestMapping("/persons")
+@RequestMapping("/v1/persons")
 @RequiredArgsConstructor
 public class PersonsControllers {
 

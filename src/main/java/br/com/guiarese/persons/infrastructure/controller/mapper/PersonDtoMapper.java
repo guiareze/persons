@@ -1,8 +1,8 @@
-package br.com.guiarese.persons.infrastructure.controllers.mappers;
+package br.com.guiarese.persons.infrastructure.controller.mapper;
 
 import br.com.guiarese.persons.domain.Person;
-import br.com.guiarese.persons.infrastructure.controllers.dtos.CreatePersonRequest;
-import br.com.guiarese.persons.infrastructure.controllers.dtos.PersonResponse;
+import br.com.guiarese.persons.infrastructure.controller.dto.CreatePersonRequest;
+import br.com.guiarese.persons.infrastructure.controller.dto.PersonResponse;
 
 public class PersonDtoMapper {
 

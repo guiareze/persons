@@ -2,8 +2,8 @@ package br.com.guiarese.persons.application;
 
 import br.com.guiarese.persons.domain.CepInfo;
 import br.com.guiarese.persons.domain.Person;
-import br.com.guiarese.persons.gateways.CepInfoGateway;
-import br.com.guiarese.persons.gateways.PersonRepositoryGateway;
+import br.com.guiarese.persons.gateway.CepInfoGateway;
+import br.com.guiarese.persons.gateway.PersonRepositoryGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package br.com.guiarese.persons.infrastructure.persistence.mappers;
+package br.com.guiarese.persons.infrastructure.persistence.mapper;
 
 import br.com.guiarese.persons.domain.Person;
 import br.com.guiarese.persons.infrastructure.persistence.entity.PersonEntity;
