@@ -1,5 +1,8 @@
 package br.com.guiarese.persons.domain;
 
+import lombok.Builder;
+
+@Builder(toBuilder = true)
 public record Person (
         String id,
         String name,

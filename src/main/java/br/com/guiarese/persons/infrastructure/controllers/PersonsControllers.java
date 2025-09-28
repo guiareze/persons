@@ -1,4 +1,4 @@
-package br.com.guiarese.persons.infrastructure.controllers.rest;
+package br.com.guiarese.persons.infrastructure.controllers;
 
 import br.com.guiarese.persons.application.CreatePersonUseCase;
 import br.com.guiarese.persons.infrastructure.controllers.dtos.CreatePersonRequest;
