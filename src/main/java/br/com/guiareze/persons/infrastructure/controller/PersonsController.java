@@ -7,6 +7,8 @@ import br.com.guiareze.persons.infrastructure.controller.dto.PersonResponse;
 import br.com.guiareze.persons.infrastructure.controller.mapper.PersonDtoMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,13 +37,11 @@ public class PersonsController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PersonResponse>> getAll() {
-        log.info("GET /persons - Retrieving all persons");
-        List<Person> personList = getAllPersonsUseCase.getAllPersons();
-        List<PersonResponse> responseDto = personList.stream()
-                .map(mapper::toResponseDto)
-                .toList();
-        log.info("GET /persons - Retrieved {} persons", responseDto.size());
+    public ResponseEntity<Page<PersonResponse>> getAll(Pageable pageable) {
+        log.info("GET /persons - Retrieving all persons with pagination: {}", pageable);
+        Page<Person> personPage = getAllPersonsUseCase.getAllPersons(pageable);
+        Page<PersonResponse> responseDto = personPage.map(mapper::toResponseDto);
+        log.info("GET /persons - Retrieved {} persons", responseDto.getTotalElements());
         return ResponseEntity.ok(responseDto);
     }
 

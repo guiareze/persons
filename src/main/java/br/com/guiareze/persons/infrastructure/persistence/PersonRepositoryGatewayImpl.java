@@ -2,11 +2,12 @@ package br.com.guiareze.persons.infrastructure.persistence;
 
 import br.com.guiareze.persons.domain.Person;
 import br.com.guiareze.persons.gateway.PersonRepositoryGateway;
-import br.com.guiareze.persons.infrastructure.exception.DatabaseException;
 import br.com.guiareze.persons.infrastructure.persistence.mapper.PersonEntityMapper;
 import br.com.guiareze.persons.infrastructure.persistence.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -29,12 +30,9 @@ public class PersonRepositoryGatewayImpl implements PersonRepositoryGateway {
     }
 
     @Override
-    public List<Person> getAllPersons() {
+    public Page<Person> getAllPersons(Pageable pageable) {
         log.info("Retrieving all persons from database");
-        var entities = repository.findAll();
-        return entities.stream()
-                .map(mapper::toDomain)
-                .toList();
+        return repository.findAll(pageable).map(mapper::toDomain);
     }
 
     @Override
