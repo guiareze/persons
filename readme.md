@@ -23,6 +23,7 @@
 * **♻️ Estrutura limpa e desacoplada**: Separação clara entre camadas (domínio, aplicação, infraestrutura) seguindo princípios do Clean Architecture.
 * **🌐 Versionamento de API**: Implementação de versionamento via URI para facilitar evolução sem breaking changes.
 * **🔗 Integração HTTP moderna com RestClient**: Utilização do `RestClient` (substituto do `RestTemplate`) para chamadas HTTP externas, aproveitando recursos mais modernos, fluentes e seguros da stack Spring.
+* **🗃️ Gestão de cache para consultas de CEP**: Armazena resultados de buscas de CEP para evitar requisições repetidas à API externa e otimizar a performance.
 
 ---
 
