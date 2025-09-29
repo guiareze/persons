@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/v1/persons")
 @RequiredArgsConstructor
-public class PersonsControllers {
+public class PersonsController {
 
     private final PersonDtoMapper mapper;
     private final CreatePersonUseCase createPersonUseCase;
@@ -22,6 +22,7 @@ public class PersonsControllers {
     public ResponseEntity<PersonResponse> create(@RequestBody CreatePersonRequest request) {
         log.info("POST /persons - Creating person with data: {}", request);
         var responseUseCase = createPersonUseCase.createPerson(mapper.toDomain(request));
+        log.info("Person created successfully: {}", responseUseCase);
         return ResponseEntity.ok(mapper.toResponseDto(responseUseCase));
     }
 
