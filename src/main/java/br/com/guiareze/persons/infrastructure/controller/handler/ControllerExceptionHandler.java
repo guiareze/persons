@@ -4,6 +4,7 @@ import br.com.guiareze.persons.infrastructure.exception.BusinessException;
 import br.com.guiareze.persons.infrastructure.exception.DatabaseException;
 import br.com.guiareze.persons.infrastructure.exception.GatewayException;
 import br.com.guiareze.persons.infrastructure.exception.dto.ErrorResponse;
+import io.github.resilience4j.circuitbreaker.CallNotPermittedException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
@@ -43,6 +44,15 @@ public class ControllerExceptionHandler {
         var problemDetail = ProblemDetail.forStatusAndDetail(status, ex.getMessage());
         problemDetail.setTitle("Business Validations Error");
         problemDetail.setType(URI.create(uriExplanation + "business-validations-error"));
+        return ResponseEntity.status(status).body(problemDetail);
+    }
+
+    @ExceptionHandler(CallNotPermittedException.class)
+    public ResponseEntity<ProblemDetail> handleException(CallNotPermittedException ex) {
+        var status = HttpStatus.SERVICE_UNAVAILABLE;
+        var problemDetail = ProblemDetail.forStatusAndDetail(status, "Service temporarily unavailable due to high load. Please try again later.");
+        problemDetail.setTitle("Service Unavailable");
+        problemDetail.setType(URI.create(uriExplanation + "service-unavailable"));
         return ResponseEntity.status(status).body(problemDetail);
     }
 

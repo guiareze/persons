@@ -2,13 +2,13 @@ package br.com.guiareze.persons.infrastructure.gateway.cep;
 
 import br.com.guiareze.persons.domain.CepInfo;
 import br.com.guiareze.persons.gateway.CepInfoGateway;
-import br.com.guiareze.persons.infrastructure.gateway.cep.dto.CepResponse;
 import br.com.guiareze.persons.infrastructure.exception.GatewayException;
+import br.com.guiareze.persons.infrastructure.gateway.cep.dto.CepResponse;
 import br.com.guiareze.persons.infrastructure.gateway.cep.mapper.CepInfoMapper;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
@@ -27,7 +27,7 @@ public class CepInfoGatewayImpl implements CepInfoGateway {
     private final CepInfoMapper mapper;
 
     @Override
-    @Cacheable(value = "cepInfoCache", key = "#cep", unless = "#result == null")
+    @CircuitBreaker(name = "cepInfoCB")
     public CepInfo getCepInfo(String cep) {
 
         log.info("Fetching CEP info for: {}", cep);
