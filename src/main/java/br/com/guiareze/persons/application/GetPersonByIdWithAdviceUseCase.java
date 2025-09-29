@@ -17,7 +17,7 @@ public class GetPersonByIdWithAdviceUseCase {
     public Person getPersonNameWithAdviceById(String id) {
         var person = personRepositoryGateway.getPersonById(id)
                 .orElseThrow(() -> new DatabaseException("Person not found with ID: " + id));
-        person.setAdvice(adviceGateway.getRandomAdvice());
+        person.setAdvice(adviceGateway.getRandomAdvice(id));
         return person;
     }
 }
