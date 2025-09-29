@@ -11,15 +11,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import java.net.URI;
+
 @ControllerAdvice
 @Slf4j
 public class ControllerExceptionHandler {
+
+    private final String uriExplanation = "https://guiareze.persons.com/docs/errors/";
 
     @ExceptionHandler(GatewayException.class)
     public ResponseEntity<ProblemDetail> handleException(GatewayException ex) {
         var status = HttpStatus.BAD_REQUEST;
         var problemDetail = ProblemDetail.forStatusAndDetail(status, ex.getMessage());
         problemDetail.setTitle("Gateway/Integration Error");
+        problemDetail.setType(URI.create(uriExplanation + "gateway-integration-error"));
         return ResponseEntity.status(status).body(problemDetail);
     }
 
@@ -28,6 +33,7 @@ public class ControllerExceptionHandler {
         var status = HttpStatus.INTERNAL_SERVER_ERROR;
         var problemDetail = ProblemDetail.forStatusAndDetail(status, ex.getMessage());
         problemDetail.setTitle("Database Error");
+        problemDetail.setType(URI.create(uriExplanation + "database-error"));
         return ResponseEntity.status(status).body(problemDetail);
     }
 
@@ -36,6 +42,7 @@ public class ControllerExceptionHandler {
         var status = HttpStatus.UNPROCESSABLE_ENTITY;
         var problemDetail = ProblemDetail.forStatusAndDetail(status, ex.getMessage());
         problemDetail.setTitle("Business Validations Error");
+        problemDetail.setType(URI.create(uriExplanation + "business-validations-error"));
         return ResponseEntity.status(status).body(problemDetail);
     }
 
@@ -45,6 +52,7 @@ public class ControllerExceptionHandler {
         var status = HttpStatus.INTERNAL_SERVER_ERROR;
         var problemDetail = ProblemDetail.forStatusAndDetail(status, "An unexpected error occurred. Please try again later.");
         problemDetail.setTitle("Internal Server Error");
+        problemDetail.setType(URI.create(uriExplanation + "internal-server-error"));
         return ResponseEntity.status(status).body(problemDetail);
     }
 }
