@@ -13,5 +13,6 @@ public record CepResponse(
         String ibge,
         String gia,
         String ddd,
-        String siafi) {
+        String siafi,
+        boolean erro) {
 }
