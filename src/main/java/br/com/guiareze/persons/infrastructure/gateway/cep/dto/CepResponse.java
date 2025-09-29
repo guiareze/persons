@@ -1,4 +1,4 @@
-package br.com.guiareze.persons.infrastructure.integration.cep.dto;
+package br.com.guiareze.persons.infrastructure.gateway.cep.dto;
 
 public record CepResponse(
         String cep,

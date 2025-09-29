@@ -1,7 +1,7 @@
-package br.com.guiareze.persons.infrastructure.integration.cep.mapper;
+package br.com.guiareze.persons.infrastructure.gateway.cep.mapper;
 
 import br.com.guiareze.persons.domain.CepInfo;
-import br.com.guiareze.persons.infrastructure.integration.cep.dto.CepResponse;
+import br.com.guiareze.persons.infrastructure.gateway.cep.dto.CepResponse;
 
 public class CepInfoMapper {
 

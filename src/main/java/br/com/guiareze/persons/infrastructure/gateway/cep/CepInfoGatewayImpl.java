@@ -1,10 +1,10 @@
-package br.com.guiareze.persons.infrastructure.integration.cep;
+package br.com.guiareze.persons.infrastructure.gateway.cep;
 
 import br.com.guiareze.persons.domain.CepInfo;
 import br.com.guiareze.persons.gateway.CepInfoGateway;
-import br.com.guiareze.persons.infrastructure.integration.cep.dto.CepResponse;
+import br.com.guiareze.persons.infrastructure.gateway.cep.dto.CepResponse;
 import br.com.guiareze.persons.infrastructure.exception.IntegrationException;
-import br.com.guiareze.persons.infrastructure.integration.cep.mapper.CepInfoMapper;
+import br.com.guiareze.persons.infrastructure.gateway.cep.mapper.CepInfoMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
