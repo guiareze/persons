@@ -8,13 +8,13 @@ public class PersonDtoMapper {
 
     public PersonResponse toResponseDto(Person person) {
         return PersonResponse.builder()
-                .id(person.id())
-                .name(person.name())
-                .age(person.age())
-                .cep(person.cep())
-                .street(person.street())
-                .city(person.city())
-                .state(person.state())
+                .id(person.getId())
+                .name(person.getName())
+                .age(person.getAge())
+                .cep(person.getCep())
+                .street(person.getStreet())
+                .city(person.getCity())
+                .state(person.getState())
                 .build();
     }
 

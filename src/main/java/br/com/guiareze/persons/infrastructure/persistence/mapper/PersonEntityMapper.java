@@ -8,12 +8,12 @@ public class PersonEntityMapper {
     public PersonEntity toEntity(Person person) {
         return new PersonEntity(
                 null,
-                person.name(),
-                person.age(),
-                person.cep(),
-                person.street(),
-                person.city(),
-                person.state()
+                person.getName(),
+                person.getAge(),
+                person.getCep(),
+                person.getStreet(),
+                person.getCity(),
+                person.getState()
         );
     }
 

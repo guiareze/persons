@@ -15,16 +15,9 @@ public class CreatePersonUseCase {
     private final CepInfoGateway cepInfoGateway;
 
     public Person createPerson(Person person) {
-        Person newPerson = generateNewPersonWithAddress(person, cepInfoGateway.getCepInfo(person.cep()));
-        return personRepositoryGateway.createPerson(newPerson);
-    }
-
-    private Person generateNewPersonWithAddress(Person person, CepInfo cepInfo) {
-        return person.toBuilder()
-                .street(cepInfo.logradouro())
-                .city(cepInfo.localidade())
-                .state(cepInfo.estado())
-                .build();
+        CepInfo cepInfo = cepInfoGateway.getCepInfo(person.getCep());
+        person.enrichAddress(cepInfo.logradouro(), cepInfo.localidade(), cepInfo.estado());
+        return personRepositoryGateway.createPerson(person);
     }
 
 }
