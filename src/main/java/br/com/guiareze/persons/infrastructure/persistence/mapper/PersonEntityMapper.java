@@ -7,7 +7,7 @@ public class PersonEntityMapper {
 
     public PersonEntity toEntity(Person person) {
         return new PersonEntity(
-                null,
+                person.getId(),
                 person.getName(),
                 person.getAge(),
                 person.getCep(),

@@ -17,7 +17,7 @@ public class CreatePersonUseCase {
     public Person createPerson(Person person) {
         CepInfo cepInfo = cepInfoGateway.getCepInfo(person.getCep());
         person.enrichAddress(cepInfo.logradouro(), cepInfo.localidade(), cepInfo.estado());
-        return personRepositoryGateway.createPerson(person);
+        return personRepositoryGateway.savePerson(person);
     }
 
 }

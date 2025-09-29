@@ -2,11 +2,15 @@ package br.com.guiareze.persons.infrastructure.persistence;
 
 import br.com.guiareze.persons.domain.Person;
 import br.com.guiareze.persons.gateway.PersonRepositoryGateway;
+import br.com.guiareze.persons.infrastructure.exception.DatabaseException;
 import br.com.guiareze.persons.infrastructure.persistence.mapper.PersonEntityMapper;
 import br.com.guiareze.persons.infrastructure.persistence.repository.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -17,11 +21,32 @@ public class PersonRepositoryGatewayImpl implements PersonRepositoryGateway {
     private final PersonEntityMapper mapper;
 
     @Override
-    public Person createPerson(Person person) {
-        log.info("Saving person to database: {}", person);
+    public Person savePerson(Person person) {
+        log.info("Saving person to database: {}", person.toString());
         var entityToSave = mapper.toEntity(person);
         var responsedEntity = repository.save(entityToSave);
         return mapper.toDomain(responsedEntity);
+    }
+
+    @Override
+    public List<Person> getAllPersons() {
+        log.info("Retrieving all persons from database");
+        var entities = repository.findAll();
+        return entities.stream()
+                .map(mapper::toDomain)
+                .toList();
+    }
+
+    @Override
+    public Optional<Person> getPersonById(String id) {
+        log.info("Retrieving person by ID from database: {}", id);
+        return repository.findById(id).map(mapper::toDomain);
+    }
+
+    @Override
+    public void deletePersonById(String id) {
+        log.info("Deleting person by ID from database: {}", id);
+        repository.deleteById(id);
     }
 
 }

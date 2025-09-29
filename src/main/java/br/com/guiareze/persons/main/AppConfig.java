@@ -1,6 +1,6 @@
 package br.com.guiareze.persons.main;
 
-import br.com.guiareze.persons.application.CreatePersonUseCase;
+import br.com.guiareze.persons.application.*;
 import br.com.guiareze.persons.gateway.CepInfoGateway;
 import br.com.guiareze.persons.gateway.PersonRepositoryGateway;
 import br.com.guiareze.persons.infrastructure.controller.mapper.PersonDtoMapper;
@@ -19,6 +19,26 @@ public class AppConfig {
     @Bean
     public CreatePersonUseCase createPersonUseCase(PersonRepositoryGatewayImpl usuarioGateway, CepInfoGateway cepInfoGateway) {
         return new CreatePersonUseCase(usuarioGateway, cepInfoGateway);
+    }
+
+    @Bean
+    public GetAllPersonsUseCase getAllPersonsUseCase(PersonRepositoryGatewayImpl usuarioGateway) {
+        return new GetAllPersonsUseCase(usuarioGateway);
+    }
+
+    @Bean
+    public GetPersonByIdUseCase getPersonByIdUseCase(PersonRepositoryGatewayImpl usuarioGateway) {
+        return new GetPersonByIdUseCase(usuarioGateway);
+    }
+
+    @Bean
+    public UpdatePersonUseCase updatePersonUseCase(PersonRepositoryGatewayImpl usuarioGateway, CepInfoGateway cepInfoGateway) {
+        return new UpdatePersonUseCase(usuarioGateway, cepInfoGateway);
+    }
+
+    @Bean
+    public DeletePersonById deletePersonById(PersonRepositoryGatewayImpl usuarioGateway) {
+        return new DeletePersonById(usuarioGateway);
     }
 
     @Bean

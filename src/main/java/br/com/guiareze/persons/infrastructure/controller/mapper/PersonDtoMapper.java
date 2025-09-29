@@ -1,7 +1,7 @@
 package br.com.guiareze.persons.infrastructure.controller.mapper;
 
 import br.com.guiareze.persons.domain.Person;
-import br.com.guiareze.persons.infrastructure.controller.dto.CreatePersonRequest;
+import br.com.guiareze.persons.infrastructure.controller.dto.PersonRequest;
 import br.com.guiareze.persons.infrastructure.controller.dto.PersonResponse;
 
 public class PersonDtoMapper {
@@ -18,8 +18,17 @@ public class PersonDtoMapper {
                 .build();
     }
 
-    public Person toDomain(CreatePersonRequest request) {
+    public Person toDomain(PersonRequest request) {
         return new Person(
+                request.name(),
+                request.age(),
+                request.cep()
+        );
+    }
+
+    public Person toDomain(PersonRequest request, String id) {
+        return new Person(
+                id,
                 request.name(),
                 request.age(),
                 request.cep()
