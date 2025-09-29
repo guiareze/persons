@@ -24,6 +24,8 @@
 * **🌐 Versionamento de API**: Implementação de versionamento via URI para facilitar evolução sem breaking changes.
 * **🔗 Integração HTTP moderna com RestClient**: Utilização do `RestClient` (substituto do `RestTemplate`) para chamadas HTTP externas, aproveitando recursos mais modernos, fluentes e seguros da stack Spring.
 * **🗃️ Gestão de cache para consultas de CEP**: Armazena resultados de buscas de CEP para evitar requisições repetidas à API externa e otimizar a performance.
+* **📄 Retorno de buscas paginadas**: Endpoints de listagem suportam paginação seguindo o padrão do Spring Data, facilitando o consumo eficiente dos dados.
+* **⚠️ Tratamento de exceções com ProblemDetail**: Utilização do padrão `ProblemDetail` para respostas padronizadas de erros, melhorando a comunicação de falhas para o consumidor da API.
 
 ---
 
