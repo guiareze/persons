@@ -26,6 +26,7 @@
 * **🗃️ Gestão de cache para consultas de CEP**: Armazena resultados de buscas de CEP para evitar requisições repetidas à API externa e otimizar a performance.
 * **📄 Retorno de buscas paginadas**: Endpoints de listagem suportam paginação seguindo o padrão do Spring Data, facilitando o consumo eficiente dos dados.
 * **⚠️ Tratamento de exceções com ProblemDetail**: Utilização do padrão `ProblemDetail` para respostas padronizadas de erros, melhorando a comunicação de falhas para o consumidor da API.
+* **🛡️ Circuit Breaker com Resilience4j**: Implementação de tolerância a falhas em integrações externas utilizando o Resilience4j para circuit breaker.
 
 ---
 
