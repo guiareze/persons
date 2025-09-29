@@ -2,6 +2,7 @@ package br.com.guiareze.persons.infrastructure.controller;
 
 import br.com.guiareze.persons.application.*;
 import br.com.guiareze.persons.domain.Person;
+import br.com.guiareze.persons.infrastructure.controller.dto.PersonAdviceResponse;
 import br.com.guiareze.persons.infrastructure.controller.dto.PersonRequest;
 import br.com.guiareze.persons.infrastructure.controller.dto.PersonResponse;
 import br.com.guiareze.persons.infrastructure.controller.mapper.PersonDtoMapper;
@@ -24,6 +25,7 @@ public class PersonsController {
     private final CreatePersonUseCase createPersonUseCase;
     private final GetAllPersonsUseCase getAllPersonsUseCase;
     private final GetPersonByIdUseCase getPersonByIdUseCase;
+    private final GetPersonByIdWithAdviceUseCase getPersonByIdWithAdviceUseCase;
     private final UpdatePersonUseCase updatePersonUseCase;
     private final DeletePersonById deletePersonById;
 
@@ -51,6 +53,15 @@ public class PersonsController {
         Person person = getPersonByIdUseCase.getPersonById(id);
         PersonResponse responseDto = mapper.toResponseDto(person);
         log.info("GET /persons/{} - Person retrieved successfully: {}", id, responseDto);
+        return ResponseEntity.ok(responseDto);
+    }
+
+    @GetMapping("/{id}/advice")
+    public ResponseEntity<PersonAdviceResponse> getByIdWithAdvice(@PathVariable String id) {
+        log.info("GET /persons/{}/advice - Retrieving person by ID with advice", id);
+        Person person = getPersonByIdWithAdviceUseCase.getPersonNameWithAdviceById(id);
+        PersonAdviceResponse responseDto = mapper.toAdviceResponseDto(person);
+        log.info("GET /persons/{}/advice - Person with advice retrieved successfully: {}", id, responseDto);
         return ResponseEntity.ok(responseDto);
     }
 

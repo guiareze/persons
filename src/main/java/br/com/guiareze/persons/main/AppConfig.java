@@ -1,9 +1,11 @@
 package br.com.guiareze.persons.main;
 
 import br.com.guiareze.persons.application.*;
+import br.com.guiareze.persons.gateway.AdviceGateway;
 import br.com.guiareze.persons.gateway.CepInfoGateway;
 import br.com.guiareze.persons.gateway.PersonRepositoryGateway;
 import br.com.guiareze.persons.infrastructure.controller.mapper.PersonDtoMapper;
+import br.com.guiareze.persons.infrastructure.gateway.advice.AdviceGatewayImpl;
 import br.com.guiareze.persons.infrastructure.gateway.cep.CepInfoGatewayImpl;
 import br.com.guiareze.persons.infrastructure.gateway.cep.mapper.CepInfoMapper;
 import br.com.guiareze.persons.infrastructure.persistence.PersonRepositoryGatewayImpl;
@@ -32,6 +34,11 @@ public class AppConfig {
     }
 
     @Bean
+    public GetPersonByIdWithAdviceUseCase getPersonByIdWithAdviceUseCase(PersonRepositoryGatewayImpl usuarioGateway, AdviceGateway adviceGateway) {
+        return new GetPersonByIdWithAdviceUseCase(usuarioGateway, adviceGateway);
+    }
+
+    @Bean
     public UpdatePersonUseCase updatePersonUseCase(PersonRepositoryGatewayImpl usuarioGateway, CepInfoGateway cepInfoGateway) {
         return new UpdatePersonUseCase(usuarioGateway, cepInfoGateway);
     }
@@ -49,6 +56,11 @@ public class AppConfig {
     @Bean
     public CepInfoGateway cepInfoGateway(RestClient restClient, CepInfoMapper mapper) {
         return new CepInfoGatewayImpl(restClient, mapper);
+    }
+
+    @Bean
+    public AdviceGateway adviceGateway(RestClient restClient) {
+        return new AdviceGatewayImpl(restClient);
     }
 
     @Bean

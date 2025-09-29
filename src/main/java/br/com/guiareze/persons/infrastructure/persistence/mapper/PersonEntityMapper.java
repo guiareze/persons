@@ -25,7 +25,8 @@ public class PersonEntityMapper {
                 entity.cep(),
                 entity.street(),
                 entity.city(),
-                entity.state()
+                entity.state(),
+                null
         );
     }
 

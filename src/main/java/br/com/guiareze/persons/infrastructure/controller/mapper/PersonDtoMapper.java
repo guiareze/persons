@@ -1,6 +1,7 @@
 package br.com.guiareze.persons.infrastructure.controller.mapper;
 
 import br.com.guiareze.persons.domain.Person;
+import br.com.guiareze.persons.infrastructure.controller.dto.PersonAdviceResponse;
 import br.com.guiareze.persons.infrastructure.controller.dto.PersonRequest;
 import br.com.guiareze.persons.infrastructure.controller.dto.PersonResponse;
 
@@ -16,6 +17,13 @@ public class PersonDtoMapper {
                 .city(person.getCity())
                 .state(person.getState())
                 .build();
+    }
+
+    public PersonAdviceResponse toAdviceResponseDto(Person person) {
+        return new PersonAdviceResponse(
+                person.getName(),
+                person.getAdvice()
+        );
     }
 
     public Person toDomain(PersonRequest request) {

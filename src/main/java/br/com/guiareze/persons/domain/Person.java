@@ -18,6 +18,7 @@ public class Person{
     private String street;
     private String city;
     private String state;
+    private String advice;
 
     public Person(String name, int age, String cep) {
         this.name = name;
