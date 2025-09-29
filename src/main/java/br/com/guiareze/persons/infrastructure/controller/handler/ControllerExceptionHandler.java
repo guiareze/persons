@@ -6,6 +6,7 @@ import br.com.guiareze.persons.infrastructure.exception.GatewayException;
 import br.com.guiareze.persons.infrastructure.exception.dto.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,31 +16,35 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ControllerExceptionHandler {
 
     @ExceptionHandler(GatewayException.class)
-    public ResponseEntity<ErrorResponse> handleException(GatewayException ex) {
-        return org.springframework.http.ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
-                .body(new ErrorResponse(ex.getMessage()));
+    public ResponseEntity<ProblemDetail> handleException(GatewayException ex) {
+        var status = HttpStatus.BAD_REQUEST;
+        var problemDetail = ProblemDetail.forStatusAndDetail(status, ex.getMessage());
+        problemDetail.setTitle("Gateway/Integration Error");
+        return ResponseEntity.status(status).body(problemDetail);
     }
 
     @ExceptionHandler(DatabaseException.class)
-    public ResponseEntity<ErrorResponse> handleException(DatabaseException ex) {
-        return org.springframework.http.ResponseEntity
-                .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(new ErrorResponse(ex.getMessage()));
+    public ResponseEntity<ProblemDetail> handleException(DatabaseException ex) {
+        var status = HttpStatus.INTERNAL_SERVER_ERROR;
+        var problemDetail = ProblemDetail.forStatusAndDetail(status, ex.getMessage());
+        problemDetail.setTitle("Database Error");
+        return ResponseEntity.status(status).body(problemDetail);
     }
 
     @ExceptionHandler(BusinessException.class)
-    public ResponseEntity<ErrorResponse> handleException(BusinessException ex) {
-        return org.springframework.http.ResponseEntity
-                .status(HttpStatus.UNPROCESSABLE_ENTITY)
-                .body(new ErrorResponse(ex.getMessage()));
+    public ResponseEntity<ProblemDetail> handleException(BusinessException ex) {
+        var status = HttpStatus.UNPROCESSABLE_ENTITY;
+        var problemDetail = ProblemDetail.forStatusAndDetail(status, ex.getMessage());
+        problemDetail.setTitle("Business Validations Error");
+        return ResponseEntity.status(status).body(problemDetail);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ErrorResponse> handleException(Exception ex) {
+    public ResponseEntity<ProblemDetail> handleException(Exception ex) {
         log.error("Unexpected error occurred", ex);
-        return org.springframework.http.ResponseEntity
-                .status(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(new ErrorResponse("An unexpected error occurred: " + ex.getMessage()));
+        var status = HttpStatus.INTERNAL_SERVER_ERROR;
+        var problemDetail = ProblemDetail.forStatusAndDetail(status, "An unexpected error occurred. Please try again later.");
+        problemDetail.setTitle("Internal Server Error");
+        return ResponseEntity.status(status).body(problemDetail);
     }
 }
